@@ -12,4 +12,30 @@ CREATE TABLE animals (
     PRIMARY KEY (id)
 );
 
+==================================================================
+
   ALTER TABLE animals ADD species VARCHAR(40);
+
+==================================================================
+
+CREATE TABLE owners (
+    id INT AUTO_INCREMENT,
+    full_name CHAR(200),
+    age INT,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE species (
+    id INT AUTO_INCREMENT,
+    name CHAR(100),
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE `vet_clinic`.`animals` DROP COLUMN `species`;
+
+-- reference owner and species into animals
+
+ALTER TABLE animals ADD CONSTRAINT fk_species FOREIGN KEY (species_id) REFERENCES species(id);
+ALTER TABLE animals ADD CONSTRAINT fk_owners FOREIGN KEY (owners_id) REFERENCES owners(id);
+
+
